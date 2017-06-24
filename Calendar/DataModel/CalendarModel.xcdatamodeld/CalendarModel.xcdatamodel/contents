@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Day" representedClassName="Day" syncable="YES">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="nameInWeek" attributeType="String" syncable="YES"/>
+        <attribute name="valueInMonth" attributeType="Integer 16" minValueString="1" maxValueString="31" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="valueInWeek" attributeType="Integer 16" minValueString="1" maxValueString="7" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="belongMonth" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Month" inverseName="days" inverseEntity="Month" syncable="YES"/>
+        <relationship name="belongWeek" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Week" inverseName="days" inverseEntity="Week" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="inDays" inverseEntity="Event" syncable="YES"/>
+        <relationship name="nextDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="previousDay" inverseEntity="Day" syncable="YES"/>
+        <relationship name="previousDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="nextDay" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="attendeesName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="locationDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <relationship name="inDays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="events" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <entity name="Month" representedClassName="Month" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="valueInYear" attributeType="Integer 16" minValueString="1" maxValueString="12" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="belongYear" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Year" inverseName="months" inverseEntity="Year" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" maxCount="31" deletionRule="Nullify" ordered="YES" destinationEntity="Day" inverseName="belongMonth" inverseEntity="Day" syncable="YES"/>
+        <relationship name="nextMonth" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Month" inverseName="previousMonth" inverseEntity="Month" syncable="YES"/>
+        <relationship name="previousMonth" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Month" inverseName="nextMonth" inverseEntity="Month" syncable="YES"/>
+        <relationship name="weeks" optional="YES" toMany="YES" maxCount="6" deletionRule="Nullify" ordered="YES" destinationEntity="Week" inverseName="belongMonths" inverseEntity="Week" syncable="YES"/>
+    </entity>
+    <entity name="Week" representedClassName="Week" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="valueInYear" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="belongMonths" optional="YES" toMany="YES" maxCount="2" deletionRule="Nullify" destinationEntity="Month" inverseName="weeks" inverseEntity="Month" syncable="YES"/>
+        <relationship name="belongYear" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Year" inverseName="weeks" inverseEntity="Year" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" maxCount="7" deletionRule="Nullify" ordered="YES" destinationEntity="Day" inverseName="belongWeek" inverseEntity="Day" syncable="YES"/>
+        <relationship name="nextWeek" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Week" inverseName="previousWeek" inverseEntity="Week" syncable="YES"/>
+        <relationship name="previousWeek" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Week" inverseName="nextWeek" inverseEntity="Week" syncable="YES"/>
+    </entity>
+    <entity name="Year" representedClassName="Year" syncable="YES">
+        <attribute name="id" attributeType="Integer 16" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="value" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="months" optional="YES" toMany="YES" maxCount="12" deletionRule="Nullify" ordered="YES" destinationEntity="Month" inverseName="belongYear" inverseEntity="Month" syncable="YES"/>
+        <relationship name="nextYear" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="previousYear" inverseEntity="Year" syncable="YES"/>
+        <relationship name="previousYear" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="nextYear" inverseEntity="Year" syncable="YES"/>
+        <relationship name="weeks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Week" inverseName="belongYear" inverseEntity="Week" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Day" positionX="-3078" positionY="-3564" width="128" height="195"/>
+        <element name="Event" positionX="-2898" positionY="-3564" width="128" height="180"/>
+        <element name="Month" positionX="-3251" positionY="-3690" width="128" height="165"/>
+        <element name="Week" positionX="-3213" positionY="-3645" width="128" height="150"/>
+        <element name="Year" positionX="-3429" positionY="-3807" width="128" height="135"/>
+    </elements>
+</model>

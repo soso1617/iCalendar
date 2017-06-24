@@ -1,0 +1,41 @@
+/* 
+  Localized.strings
+  Calendar
+
+  Created by Zhang, Eric X. on 4/30/17.
+  Copyright © 2017 ShangHe. All rights reserved.
+*/
+
+"Warning_Title" = "Warning";
+"Error_Title" = "Error";
+"Information_Title" = "Info";
+"Btn_OK" = "OK";
+"Btn_Done" = "Done";
+"Btn_Cancel" = "Cancel";
+"Btn_Exit" = "Exit";
+"Btn_Today" = "Today";
+
+/* Title */
+"Home_Title" = "iCalendar";
+
+"Week_Day_1_Short" = "Sun";
+"Week_Day_2_Short" = "Mon";
+"Week_Day_3_Short" = "Tue";
+"Week_Day_4_Short" = "Wed";
+"Week_Day_5_Short" = "Thu";
+"Week_Day_6_Short" = "Fri";
+"Week_Day_7_Short" = "Sat";
+
+"No_Event" = "No event in this day.";
+"Day_Before" = "day before";
+"Day_After" = "day after";
+"Version" = "Version %@";
+"Initializing" = "Is initializing...";
+
+/* Format */
+"Duration_H" = "%dh";
+"Duration_M" = "%dm";
+
+/* Error Message */
+"Boot_Failed_Message" = "Initialization failure, please check your internet.";
+"Unknow_Error_Message" = "Unexpected error occurs, please contact with your IT support.";
